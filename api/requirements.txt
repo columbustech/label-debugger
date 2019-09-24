@@ -1,0 +1,5 @@
+django==2.1
+djangorestframework
+django-cors-middleware
+requests
+boto3
