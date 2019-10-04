@@ -1,0 +1,32 @@
+{% extends "app_base.html" %}
+{% block content %}
+
+
+<form method="POST" action="fetchPair" role="form" style="max-width:400px; width:100%">
+	{% if message is defined %}
+	<div class="alert alert-warning" role="alert">{{ message }}</div>
+	{% endif %}
+	<div class="form-group">
+	  <label for="tableA">Path for Table A</label>
+	  <input type="text" class="form-control" id="tableA" name="tableA" align ="right"/>
+	</div>
+	<br> 
+	<div class="form-group">
+	  <label for="tableB">Path for Table B</label>
+	  <input type="text" class="form-control" id="tableB" name="tableB" />
+	</div>
+	<br>
+	<div class="form-group">
+	  <label for="labelledPairs">Path for labeled file</label>
+	  <input type="text" class="form-control" id="labelledPairs" name="labelledPairs" />
+	</div>
+	<br> 
+	<div class="form-group">
+	  <label for="outputFile">Path for the output file</label>
+	  <input type="text" class="form-control" id="outputFile" name="outputFile" />
+	</div>
+	<div><input type="submit" value="Generate Suspicious Pairs!" align = "center" class="btn btn-primary" /></div>
+</form>
+
+
+{% endblock %}

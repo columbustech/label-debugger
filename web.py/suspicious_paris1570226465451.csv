@@ -1,0 +1,22 @@
+tableA.id,tableB.id,tableA.title,tableB.title,tableA.booktitle,tableB.booktitle,tableA.author,tableB.author,tableA.pages,tableB.pages,tableA.year,tableB.year,tableA.organization,tableB.organization,tableA.ENTRYTYPE,tableB.ENTRYTYPE,tableA.publisher,tableB.publisher,tableA.journal,tableB.journal,tableA.number,tableB.number,tableA.volume,tableB.volume,label
+288,1941,Assessing confidence of knowledge base content with an experimental study in entity resolution,"Virtual Gene: {A} Gene Selection Algorithm for Sample Classification
+on Microarray Datasets",Proceedings of the 2013 workshop on Automated knowledge base construction,"Computational Science - {ICCS} 2005, 5th International Conference, Atlanta, GA, USA, May 22-25, 2005, Proceedings, Part {II}","Wick, Michael and Singh, Sameer and Kobren, Ari and McCallum, Andrew","Xian Xu and
+Aidong Zhang",13--18,1038--1045,2013.0,2005,ACM,,inproceedings,inproceedings,,,,,,,,,1
+687,1951,Software techniques to combat drift in puf-based authentication systems,Analysis of algorithms and data structures,,,"Kirkpatrick, Michael S and Bertino, Elisa","Lech Banachowski and
+Antoni Kreczmar and
+Wojciech Rytter",9,,2010.0,1991,,,article,book,,Addison-Wesley,Workshop on Secure Component and System Identification (SECSI 2010),,,,,,1
+235,1976,First results with utile distinction memory for reinforcement learning,Artificial Neural System for Gene Classification Using a Domain Database,,"Proceedings of the {ACM} 18th Annual Computer Science Conference on
+Cooperation, {CSC} '90, Sheraton Washington Hotel, Washington, DC, USA, February 20-22, 1990","McCallum, R Andrew","Cathy H. Wu and
+George M. Whitson",,288--292,1992.0,1990,,,article,inproceedings,University of Rochester,,,,,,,,1
+103,1918,Organizing the OCA: learning faceted subjects from a library of digital books,"Optimal allocation of programs and data in distributed systems (abstract
+only)",Proceedings of the 7th ACM/IEEE-CS joint conference on Digital libraries,"Proceedings of the 13th {ACM} Annual Conference on Computer Science, New Orleans, Louisiana, USA, 1985","Mimno, David and McCallum, Andrew",Amjad Umar,376--385,428,2007.0,1985,ACM,,inproceedings,inproceedings,,,,,,,,,1
+781,1965,Extending the ODMG object model with triggers,"Database Support for Data Mining Applications: Discovering Knowledge
+with Inductive Queries",,,"Bertino, Elisa and Guerrini, Giovanna and Merlo, Isabella",,170--188,,2004.0,2004,,,article,proceedings,IEEE,Springer,"Knowledge and Data Engineering, IEEE Transactions on",,2,,16.0,2682,0
+225,1770,Efficient non-parametric estimation of multiple embeddings per word in vector space,Shifts recognition in correlated process data using a neural network,,,"Neelakantan, Arvind and Shankar, Jeevan and Passos, Alexandre and McCallum, Andrew","Chih{-}Chou Chiu and
+Ming{-}Kuen Chen and
+Ker{-}Ming Lee",,137--143,2015.0,2001,,,article,article,,,arXiv preprint arXiv:1504.06654,Int. J. Systems Science,,2,,32,0
+637,1749,Detecting mobile malware threats to homeland security through static analysis,Growth Function,,Encyclopedia of Machine Learning,"Seo, Seung-Hyun and Gupta, Aditi and Sallam, Asmaa Mohamed and Bertino, Elisa and Yim, Kangbin",,43--53,492,2014.0,2010,,,article,incollection,Academic Press,,Journal of Network and Computer Applications,,,,38.0,,0
+2045,2234,International Conference on Management of Data (SIGMOD'10)-Article 21 (34 pages)-Finding Maximal Cliques in Massive Networks,Bayesian Nonparametric Inference of Switching Dynamic Linear Models,,,"Cheng, J and Ke, Y and Fu, A WC and Yu, JX and Zhu, L","Emily B. Fox and
+Erik B. Sudderth and
+Michael I. Jordan and
+Alan S. Willsky",,1569--1585,2011.0,2011,,,article,article,,,ACM Transactions on Database Systems-TODS,{IEEE} Transactions on Signal Processing,4,4,36.0,59,0

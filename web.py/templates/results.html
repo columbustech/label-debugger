@@ -1,0 +1,29 @@
+{% extends "app_base.html" %}
+{% block content %}
+<h3>Suspicious Pairs have been generated and Uploaded to cDrive</h3>
+
+	<div class="row">
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+		  	<div class="panel-heading">
+		    	<h3 class="panel-title"></h3>
+		  	</div>
+		  	<div class="panel-body">
+		  		{% if file_path %}
+				{% for result in file_path %}
+						<div class="row">
+		 					<a href={{ result["out_path"]|e }} class="btn btn-secondary">
+					View results in cDrive
+				</a>
+				{% endfor %}
+				{% endif %}
+
+			</div>
+			<div class="panel-footer">
+			</div>
+		</div>
+	</div>
+	</div>
+{% endblock %}
+
+
