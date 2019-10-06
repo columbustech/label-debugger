@@ -9,8 +9,8 @@ import requests
 import os
 
 import pandas as pd
-
 import py_entitymatching as em
+
 
 import v6.data_io
 import v6.label_debugger
@@ -81,7 +81,7 @@ urls = (
 class fetchPair:
     def __init__(self):
         self.cdriveApiUrl = "https://api.cdrive.columbusecosystem.com"
-        self.token = 'FbdKxCD8LUa5dEWfP18EkMad0wwrSV'
+        self.token = 'waD9Dasn1v2yecca9UpWRnVNJcKo01'
         self.auth_header = "Bearer " + self.token
         self.features_vector_path = "users/test_wisc2/fv/feature_vector.csv"
         time_stamp = int(round(time.time() * 1000))
@@ -162,7 +162,7 @@ class fetchPair:
             response = requests.post('https://api.cdrive.columbusecosystem.com/upload/', files=file_arg, headers={'Authorization': self.auth_header})
 
             #response = requests.post('https://api.cdrive.columbusecosystem.com/upload/', files=file_arg, headers={'Authorization':'Bearer ' + access_token})
-            print " res", response
+            print (" res", response)
 
 
     def POST(self):
@@ -174,7 +174,7 @@ class fetchPair:
         #access_token = request.data['access_token']
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+ table_a_url
         table_a_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
-        print "table_a_resp", table_a_resp
+        print ("table_a_resp", table_a_resp)
         data = table_a_resp.json() 
         table_a_file_resp = requests.get(data['download_url'])
         with open(self.tableA,'wb') as f: 
@@ -208,7 +208,7 @@ class fetchPair:
         #table_B = em.read_csv_metadata(bpath, key='id')
         self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile,self.labelfile)
 
-        print " reaching end"
+        print (" reaching end")
         #file_arg = {'file': ("results.csv"), 'path':  self.out_path }
         # with open('results.csv', 'r') as f:
         #     f.seek(0)

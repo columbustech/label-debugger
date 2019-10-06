@@ -6,11 +6,11 @@ Created on Mar 6, 2019
 
 import time
 
-import feature_selection as fs
+import v6.feature_selection as fs
 
 import v6.fpfn as fpfn
 
-import combiner
+import v6.combiner
 
 class LabelDebugger(object):
     

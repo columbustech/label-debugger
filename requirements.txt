@@ -1,7 +1,11 @@
-web.py
+utils
+web.py==0.40.dev0
 pandas
+requests
+cheroot
+numpy==1.16.2
 scikit-learn
 pandas
-numpy
+scipy
+py_entitymatching
 requests
-py-entitymatching

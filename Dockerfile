@@ -1,4 +1,5 @@
-FROM python:2.7
+FROM ubuntu:16.04
+FROM python:3
 
 RUN apt-get update && apt-get install -y nginx
 
@@ -10,4 +11,4 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 COPY ./web.py/ /code/
 EXPOSE 8000
 
-CMD service nginx start && python label_debugger.py 8000
+CMD python3 label_debugger.py 8000
