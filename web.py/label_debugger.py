@@ -35,7 +35,7 @@ import collections
 # `**context': a dictionary of variable names mapped to values
 # that is passed to Jinja2's templating engine
 #
-# See curr_time's `GET' method for sample usage
+# See curr_time's `GET' method for sample usage, 
 #
 # WARNING: DO NOT CHANGE THIS METHOD
 def render_template(template_name, **context):
@@ -52,10 +52,11 @@ def render_template(template_name, **context):
 
     return jinja_env.get_template(template_name).render(context)
 
-#####################END HELPER METHODS#####################
+#####################END HELPER METHODS####################
 
 urls = (
     '/fetchPair', 'fetchPair',
+     '/', 'fetchPair',
     '/accessToken', 'accessToken',
 )
 
@@ -81,12 +82,12 @@ urls = (
 class fetchPair:
     def __init__(self):
         self.cdriveApiUrl = "https://api.cdrive.columbusecosystem.com"
-        self.token = 'waD9Dasn1v2yecca9UpWRnVNJcKo01'
+        self.token = 'YhkwBMdPw1dxPem2MwO17rBKh2jDo3'
         self.auth_header = "Bearer " + self.token
-        self.features_vector_path = "users/test_wisc2/fv/feature_vector.csv"
+        self.features_vector_path = "users/bha92/fp/feature_vector.csv"
         time_stamp = int(round(time.time() * 1000))
         self.output_file = 'suspicious_paris'+str(time_stamp)+'.csv'
-        self.out_path = "users/test_wisc2/out"
+        self.out_path = "users/bha92/output"
         self.tableA = "tableA.csv"
         self.tableB = "tableB.csv"
         self.labelfile = "label.csv"
@@ -179,7 +180,7 @@ class fetchPair:
         table_a_file_resp = requests.get(data['download_url'])
         with open(self.tableA,'wb') as f: 
             f.write(table_a_file_resp.text.encode('utf-8').strip()) 
-
+        print ("table A downloaded")
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+table_b_url
         table_b_resp = requests.get( url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = table_b_resp.json() 
@@ -187,7 +188,7 @@ class fetchPair:
 
         with open(self.tableB,'wb') as f: 
             f.write(table_b_file_resp.text.encode('utf-8').strip()) 
-
+        print ("table A downloaded")
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+label_data_url
         label_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = label_resp.json() 
@@ -196,14 +197,16 @@ class fetchPair:
         with open(self.labelfile,'wb') as f: 
             f.write(label_file_resp.text.encode('utf-8').strip())
 
+        print ("table label data downloaded")
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+self.features_vector_path
         label_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = label_resp.json() 
-
+        
         feature_file_resp = requests.get(data['download_url'])
         with open(self.featurefile,'wb') as f: 
             f.write(feature_file_resp.text.encode('utf-8').strip())
-
+        
+        print ("table feature file downloaded")
         #table_A = em.read_csv_metadata(apath, key='id')
         #table_B = em.read_csv_metadata(bpath, key='id')
         self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile,self.labelfile)
@@ -221,7 +224,7 @@ class fetchPair:
         #print response
         self.columbusecosystem = "https://cdrive.columbusecosystem.com"
         out_path = self.columbusecosystem+"/csvbrowser/?path="+self.out_path+"/"+self.output_file
-        file_path = [{'out_path':out_path}]
+        file_path = [{'out_path': self.columbusecosystem}]
 
         return render_template('results.html',file_path = file_path)
 
