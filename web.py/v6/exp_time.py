@@ -136,16 +136,16 @@ def run_with_golden(params):
     
     all_detected_errors, iter_times = debug_labels(debugger, index2pair, pair2golden)
     
-    print("Total number of label errors: ", len(all_errors))
-    print("Number of iterations: ", debugger.iter_count)
-    print("Number of checked pairs: ", len(debugger.verified_indices))
-    print("Number of detected errors: ", len(all_detected_errors))
+    # print("Total number of label errors: ", len(all_errors))
+    # print("Number of iterations: ", debugger.iter_count)
+    # print("Number of checked pairs: ", len(debugger.verified_indices))
+    # print("Number of detected errors: ", len(all_detected_errors))
     
-    print("First iteration (secs): ", iter_times[0])
-    print("For other iterations: ")
-    print("Min (secs): ", min(iter_times[1:]))
-    print("Max (secs): ", max(iter_times[1:]))
-    print("Ave (secs): ", sum(iter_times[1:])/len(iter_times[1:]))
+    # print("First iteration (secs): ", iter_times[0])
+    # print("For other iterations: ")
+    # print("Min (secs): ", min(iter_times[1:]))
+    # print("Max (secs): ", max(iter_times[1:]))
+    # print("Ave (secs): ", sum(iter_times[1:])/len(iter_times[1:]))
 
 
 def debug_labels(debugger, index2pair, pair2golden):

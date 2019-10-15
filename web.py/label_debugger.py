@@ -60,24 +60,24 @@ urls = (
     '/accessToken', 'accessToken',
 )
 
-# class accessToken:
-#      def GET(self):
-#         return render_template('search.html')
+class accessToken:
+     def GET(self):
+        return render_template('search.html')
 
-#     def POST(self):
-#         rquest = web.input()
-#         code = request['code']
-#         redirect_uri = request['redirect_uri']
-#         data = {
-#             'grant_type': 'authorization_code',
-#             'code': code,
-#             'redirect_uri': redirect_uri,
-#             'client_id': os.environ['COLUMBUS_CLIENT_ID'],
-#             'client_secret': os.environ['COLUMBUS_CLIENT_SECRET']
-#         }
-#         response = requests.post(url='http://authentication.columbusecosystem.com/o/token/', data=data)
+    def POST(self):
+        rquest = web.input()
+        code = request['code']
+        redirect_uri = request['redirect_uri']
+        data = {
+            'grant_type': 'authorization_code',
+            'code': code,
+            'redirect_uri': redirect_uri,
+            'client_id': os.environ['COLUMBUS_CLIENT_ID'],
+            'client_secret': os.environ['COLUMBUS_CLIENT_SECRET']
+        }
+        response = requests.post(url='http://authentication.columbusecosystem.com/o/token/', data=data)
 
-#         return response.json()
+        return response.json()
 
 class fetchPair:
     def __init__(self):
@@ -167,6 +167,7 @@ class fetchPair:
 
 
     def POST(self):
+        s_time = int(round(time.time() * 1000))
         post_params = web.input()
         table_a_url = post_params['tableA']
         table_b_url = post_params['tableB']
@@ -205,11 +206,19 @@ class fetchPair:
         feature_file_resp = requests.get(data['download_url'])
         with open(self.featurefile,'wb') as f: 
             f.write(feature_file_resp.text.encode('utf-8').strip())
+
+        read_time = int(round(time.time() * 1000))
+
+        print ("read_time",read_time-s_time)
+
         
         print ("table feature file downloaded")
         #table_A = em.read_csv_metadata(apath, key='id')
         #table_B = em.read_csv_metadata(bpath, key='id')
         self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile,self.labelfile)
+        pair_gen_time = int(round(time.time() * 1000))
+
+        print ("pair_gen_and_upload_time",pair_gen_time-read_time)
 
         print (" reaching end")
         #file_arg = {'file': ("results.csv"), 'path':  self.out_path }
