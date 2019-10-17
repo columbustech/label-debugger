@@ -82,7 +82,7 @@ class accessToken:
 class fetchPair:
     def __init__(self):
         self.cdriveApiUrl = "https://api.cdrive.columbusecosystem.com"
-        self.token = 'YhkwBMdPw1dxPem2MwO17rBKh2jDo3'
+        self.token = '5yjnM4E6gyFLCwZk6jI8m5ZtXJUQaR'
         self.auth_header = "Bearer " + self.token
         self.features_vector_path = "users/bha92/fp/feature_vector.csv"
         time_stamp = int(round(time.time() * 1000))
@@ -116,7 +116,7 @@ class fetchPair:
 
         top_k = len(labels)
         
-        params['num_cores'] = 1
+        params['num_cores'] = 4
         params['num_folds'] = 5
         
         params['min_con_dim'] = 1
@@ -167,7 +167,7 @@ class fetchPair:
 
 
     def POST(self):
-        s_time = int(round(time.time() * 1000))
+        s_time =  int(round(time.time()))
         post_params = web.input()
         table_a_url = post_params['tableA']
         table_b_url = post_params['tableB']
@@ -178,6 +178,7 @@ class fetchPair:
         table_a_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         print ("table_a_resp", table_a_resp)
         data = table_a_resp.json() 
+
         table_a_file_resp = requests.get(data['download_url'])
         with open(self.tableA,'wb') as f: 
             f.write(table_a_file_resp.text.encode('utf-8').strip()) 
@@ -190,6 +191,11 @@ class fetchPair:
         with open(self.tableB,'wb') as f: 
             f.write(table_b_file_resp.text.encode('utf-8').strip()) 
         print ("table A downloaded")
+
+        read_time = int(round(time.time()))
+
+        print ("totoal table read_time: ",read_time-s_time)
+
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+label_data_url
         label_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = label_resp.json() 
@@ -207,18 +213,20 @@ class fetchPair:
         with open(self.featurefile,'wb') as f: 
             f.write(feature_file_resp.text.encode('utf-8').strip())
 
-        read_time = int(round(time.time() * 1000))
+        read_time = int(round(time.time()))
 
-        print ("read_time",read_time-s_time)
+        print ("totoal read_time: ",read_time-s_time)
 
         
         print ("table feature file downloaded")
         #table_A = em.read_csv_metadata(apath, key='id')
         #table_B = em.read_csv_metadata(bpath, key='id')
         self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile,self.labelfile)
-        pair_gen_time = int(round(time.time() * 1000))
+        pair_gen_time =  int(round(time.time()))
 
-        print ("pair_gen_and_upload_time",pair_gen_time-read_time)
+
+
+        print ("pair_gen_and_upload_time: ",pair_gen_time-read_time)
 
         print (" reaching end")
         #file_arg = {'file': ("results.csv"), 'path':  self.out_path }
