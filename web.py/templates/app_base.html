@@ -34,7 +34,6 @@ see http://jinja.pocoo.org/docs/templates/#template-inheritance for more informa
   $(function() { 
     var urlVars = getUrlVars();
     if (getCookie("lb_token") !== "") {
-      renderCDriveContainer();
     }
     else if ("code" in urlVars) {
       var code = urlVars["code"];
@@ -43,8 +42,9 @@ see http://jinja.pocoo.org/docs/templates/#template-inheritance for more informa
       $.post("access-token/", { code: code, redirect_uri: redirect_uri })
         .done(function( data ) {
           var access_token = data["access_token"];
+          console.log("setting cokkie to access_token");
+          console.log(access_token);
           setCookie("lb_token", access_token);
-          renderCDriveContainer();
         });
     } else {
       $.getJSON("client-id/", function(data) {
