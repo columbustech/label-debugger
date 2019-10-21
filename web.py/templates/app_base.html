@@ -13,7 +13,13 @@ see http://jinja.pocoo.org/docs/templates/#template-inheritance for more informa
 <script   src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
     <script>
-       
+       function getUrlVars() {
+          var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+          });
+          return vars;
+        }
   function setCookie(cname, cvalue) {
     document.cookie = cname + "=" + cvalue + ";";
   }
