@@ -92,6 +92,7 @@ class fetchPair:
         self.tableB = "tableB.csv"
         self.labelfile = "label.csv"
         self.featurefile = "feature_vector.csv"
+
         logging.basicConfig(filename='lb_log.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
     def GET(self):
@@ -169,6 +170,9 @@ class fetchPair:
     def POST(self):
         s_time =  int(round(time.time()))
         post_params = web.input()
+        cokies = web.cookies()
+        self.auth_token = cokies.lb_token
+        print ("token",self.auth_token)
         table_a_url = post_params['tableA']
         table_b_url = post_params['tableB']
         label_data_url = post_params['labelledPairs']
