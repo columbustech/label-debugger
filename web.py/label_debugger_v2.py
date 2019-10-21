@@ -97,7 +97,7 @@ class fetchPair:
     def GET(self):
         return render_template('search.html')
 
-    def find_suspicious_labels(self,tableA,tableB,featureVectorFile,label_table):
+    def find_suspicious_labels(self,tableA,tableB,featureVectorFile):
 
         #hpath = os.path.join(featureVectorFile, params['hpath'])
 
@@ -178,27 +178,33 @@ class fetchPair:
         table_a_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         #logger.info("table_a_resp", table_a_resp)
         data = table_a_resp.json() 
-
+        self.table_a_path = data['download_url']
         table_a_file_resp = requests.get(data['download_url'])
         read_time1 = int(round(time.time()))
-        with open(self.tableA,'wb') as f: 
-            f.write(table_a_file_resp.text.encode('utf-8').strip()) 
+        
+        with open(self.tableA,'w') as f: 
+            f.write(table_a_file_resp.text) 
+        
         read_time2 = int(round(time.time()))
         print ("write time",read_time2-read_time1)
         logging.info("table A downloaded")
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+table_b_url
         table_b_resp = requests.get( url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = table_b_resp.json() 
+        self.table_b_path = data['download_url']
         table_b_file_resp = requests.get(data['download_url'])
+        
+        with open(self.tableB,'w') as f: 
+            f.write(table_b_file_resp.text)
+            # f.write(table_b_file_resp.text.encode('utf-8').strip())
 
-        with open(self.tableB,'wb') as f: 
-            f.write(table_b_file_resp.text.encode('utf-8').strip()) 
-        print ("table A downloaded")
+        
+        print ("table B downloaded")
 
         read_time = int(round(time.time()))
 
         logging.info("totoal table read_time:%s ",read_time-s_time)
-
+        '''
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+label_data_url
         label_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = label_resp.json() 
@@ -208,13 +214,14 @@ class fetchPair:
             f.write(label_file_resp.text.encode('utf-8').strip())
 
         print ("table label data downloaded")
+        '''
         cdrive_download_url = self.cdriveApiUrl+ "/download?path="+self.features_vector_path
         label_resp = requests.get(url = cdrive_download_url, headers={'Authorization': self.auth_header})
         data = label_resp.json() 
         
         feature_file_resp = requests.get(data['download_url'])
-        with open(self.featurefile,'wb') as f: 
-            f.write(feature_file_resp.text.encode('utf-8').strip())
+        with open(self.featurefile,'w') as f: 
+            f.write(feature_file_resp.text)
 
         read_time = int(round(time.time()))
 
@@ -224,7 +231,7 @@ class fetchPair:
         print ("table feature file downloaded")
         #table_A = em.read_csv_metadata(apath, key='id')
         #table_B = em.read_csv_metadata(bpath, key='id')
-        self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile,self.labelfile)
+        self.find_suspicious_labels(self.tableA,self.tableB,self.featurefile)
         pair_gen_time =  int(round(time.time()))
 
 
