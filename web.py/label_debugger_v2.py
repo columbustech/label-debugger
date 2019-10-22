@@ -59,7 +59,7 @@ urls = (
     '/', 'fetchPair',
     '/fetchPair', 'fetchPair',
     '/accessToken', 'accessToken',
-    '/clientId','clientId'
+    '/clientId','clientId',
 )
 
 class clientId:
@@ -68,7 +68,8 @@ class clientId:
         web.header('Content-Type', 'application/json')
         client_id = os.environ['COLUMBUS_CLIENT_ID']
         client_id_dict = {'clientId': client_id}
-        return json.dumps(client_id_dict)
+        #return json.dumps(client_id_dict)
+        return render_template('search.html')
 
     def POST(self):
         web.header('Content-Type', 'application/json')

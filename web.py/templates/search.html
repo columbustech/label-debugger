@@ -38,7 +38,7 @@
       var code = urlVars["code"];
       var url = window.location.href;
       var redirect_uri = url.substring(0,url.indexOf("?"));
-      $.post("access-token/", { code: code, redirect_uri: redirect_uri })
+      $.post("accessToken", { code: code, redirect_uri: redirect_uri })
         .done(function( data ) {
           var access_token = data["access_token"];
           console.log("setting cokkie to access_token");
@@ -46,7 +46,7 @@
           setCookie("lb_token", access_token);
         });
     } else { 
-      $.getJSON("clientId/", function(data) {
+      $.getJSON("clientId", function(data) {
         var clientId = data["clientId"];
         var redirect_url = window.location.href;
         var auth_url = "https://authentication.columbusecosystem.com/o/authorize/?response_type=code&client_id=" 
