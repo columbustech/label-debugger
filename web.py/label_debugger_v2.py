@@ -84,7 +84,7 @@ class accessToken:
     def POST(self):
         print ("in post method accessToken")
         web.header('Content-Type', 'application/json')
-        rquest = web.input()
+        request = web.input()
         code = request['code']
         redirect_uri = request['redirect_uri']
         data = {
