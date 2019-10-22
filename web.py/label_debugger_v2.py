@@ -17,6 +17,7 @@ import v6.label_debugger
 import v6.feature_selection
 import time
 import collections
+import json
 
 
 
@@ -58,13 +59,28 @@ urls = (
     '/', 'fetchPair',
     '/fetchPair', 'fetchPair',
     '/accessToken', 'accessToken',
+    '/client-id','clinetId'
 )
+
+class clinetId:
+    def GET(self):
+        web.header('Content-Type', 'application/json')
+        client_id = os.environ['COLUMBUS_CLIENT_ID']
+        client_id_dict = {'clientId': client_id}
+        return json.dumps(client_id_dict)
+
+    def POST(self):
+        web.header('Content-Type', 'application/json')
+        client_id = os.environ['COLUMBUS_CLIENT_ID']
+        client_id_dict = {'clientId': client_id}
+        return json.dumps(client_id_dict)
 
 class accessToken:
     def GET(self):
         return render_template('search.html')
 
     def POST(self):
+        web.header('Content-Type', 'application/json')
         rquest = web.input()
         code = request['code']
         redirect_uri = request['redirect_uri']
