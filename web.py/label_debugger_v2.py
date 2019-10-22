@@ -59,11 +59,12 @@ urls = (
     '/', 'fetchPair',
     '/fetchPair', 'fetchPair',
     '/accessToken', 'accessToken',
-    '/client-id','clinetId'
+    '/clientId','clientId'
 )
 
-class clinetId:
+class clientId:
     def GET(self):
+        print ("in get method clientId")
         web.header('Content-Type', 'application/json')
         client_id = os.environ['COLUMBUS_CLIENT_ID']
         client_id_dict = {'clientId': client_id}
@@ -80,6 +81,7 @@ class accessToken:
         return render_template('search.html')
 
     def POST(self):
+        print ("in post method accessToken")
         web.header('Content-Type', 'application/json')
         rquest = web.input()
         code = request['code']
