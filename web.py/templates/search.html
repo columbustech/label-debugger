@@ -32,6 +32,8 @@
   }
   $(function() { 
     var urlVars = getUrlVars();
+    console.log("urlVars");
+    console.log(urlVars);
     if (getCookie("lb_token") !== "") {
     }
     else if ("code" in urlVars) {
@@ -60,7 +62,8 @@
   });
   </script>
  </head>
-<div class = "cdrivediv"/>
+
+  <div class = "cdrivediv"/>
 <form method="POST" action="fetchPair" role="form" style="max-width:400px; width:100%">
 	{% if message is defined %}
 	<div class="alert alert-warning" role="alert">{{ message }}</div>
