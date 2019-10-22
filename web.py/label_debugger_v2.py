@@ -55,8 +55,8 @@ def render_template(template_name, **context):
 #####################END HELPER METHODS####################
 
 urls = (
+    '/', 'fetchPair',
     '/fetchPair', 'fetchPair',
-     '/', 'fetchPair',
     '/accessToken', 'accessToken',
 )
 

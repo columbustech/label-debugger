@@ -1,6 +1,65 @@
 {% extends "app_base.html" %}
 {% block content %}
+<head>
 
+<script   src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+    <script>
+       function getUrlVars() {
+          var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+          });
+          return vars;
+        }
+  function setCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue + ";";
+  }
+  
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  $(function() { 
+    var urlVars = getUrlVars();
+    if (getCookie("lb_token") !== "") {
+    }
+    else if ("code" in urlVars) {
+      var code = urlVars["code"];
+      var url = window.location.href;
+      var redirect_uri = url.substring(0,url.indexOf("?"));
+      $.post("access-token/", { code: code, redirect_uri: redirect_uri })
+        .done(function( data ) {
+          var access_token = data["access_token"];
+          console.log("setting cokkie to access_token");
+          console.log(access_token);
+          setCookie("lb_token", access_token);
+        });
+    } else {
+      $.getJSON("client-id/", function(data) {
+        var clientId = data["clientId"];
+        var redirect_url = window.location.href;
+        var auth_url = "https://authentication.columbusecosystem.com/o/authorize/?response_type=code&client_id=" 
+                  + clientId + "&redirect_uri=" + redirect_url + "&state=1234xyz";
+        $(".cdrivediv").append("<div class='cdrive-import-container'></div>");
+        $(".cdrive-import-container")
+          .append("<h4 style='width:100%;'>Import from CDrive</h4>")
+          .append("<a href='" + auth_url + "' style='margin-top:15px;' class='btn btn-primary'>Login to CDrive</a>");
+      });
+    }
+  });
+  </script>
+ </head>
 
 <form method="POST" action="fetchPair" role="form" style="max-width:400px; width:100%">
 	{% if message is defined %}
