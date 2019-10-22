@@ -45,8 +45,8 @@
           console.log(access_token);
           setCookie("lb_token", access_token);
         });
-    } else {
-      $.getJSON("clientId", function(data) {
+    } else { 
+      $.getJSON("clientId/", function(data) {
         var clientId = data["clientId"];
         var redirect_url = window.location.href;
         var auth_url = "https://authentication.columbusecosystem.com/o/authorize/?response_type=code&client_id=" 
