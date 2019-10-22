@@ -38,13 +38,13 @@
       var code = urlVars["code"];
       var url = window.location.href;
       var redirect_uri = url.substring(0,url.indexOf("?"));
-      $.post("accessToken", { code: code, redirect_uri: redirect_uri })
-        .done(function( data ) {
+      $.post("accessToken", { code: code, redirect_uri: redirect_uri }).done(function( data ) {
           var access_token = data["access_token"];
           console.log("setting cokkie to access_token");
           console.log(access_token);
           setCookie("lb_token", access_token);
-        });
+        }).fail(function(response) {
+    alert('Error: ' + response.responseText);})
     } else { 
       $.getJSON("clientId", function(data) {
         var clientId = data["clientId"];
@@ -60,7 +60,7 @@
   });
   </script>
  </head>
-
+<div class = "cdrivediv"/>
 <form method="POST" action="fetchPair" role="form" style="max-width:400px; width:100%">
 	{% if message is defined %}
 	<div class="alert alert-warning" role="alert">{{ message }}</div>

@@ -68,8 +68,8 @@ class clientId:
         web.header('Content-Type', 'application/json')
         client_id = os.environ['COLUMBUS_CLIENT_ID']
         client_id_dict = {'clientId': client_id}
-        #return json.dumps(client_id_dict)
-        return render_template('search.html')
+        return json.dumps(client_id_dict)
+        #return render_template('search.html')
 
     def POST(self):
         web.header('Content-Type', 'application/json')
@@ -84,7 +84,7 @@ class accessToken:
     def POST(self):
         print ("in post method accessToken")
         web.header('Content-Type', 'application/json')
-        rquest = web.input()
+        request = web.input()
         code = request['code']
         redirect_uri = request['redirect_uri']
         data = {
@@ -96,13 +96,13 @@ class accessToken:
         }
         response = requests.post(url='http://authentication.columbusecosystem.com/o/token/', data=data)
 
-        return response.json()
+        return json.dumps(response.json())
 
 class fetchPair:
     def __init__(self):
         self.cdriveApiUrl = "https://api.cdrive.columbusecosystem.com"
         self.token = '2sFbk5qhFblhaOiTdtZ7tPbvueSW5i'
-        self.auth_header = "Bearer " + self.token
+        #self.auth_header = "Bearer " + self.token
         self.features_vector_path = "users/bha92/fp/feature_vector.csv"
         time_stamp = int(round(time.time() * 1000))
         self.output_file = 'suspicious_paris'+str(time_stamp)+'.csv'
@@ -191,6 +191,7 @@ class fetchPair:
         post_params = web.input()
         cokies = web.cookies()
         self.auth_token = cokies.lb_token
+        self.auth_header = "Bearer " + self.auth_token
         print ("token",self.auth_token)
         table_a_url = post_params['tableA']
         table_b_url = post_params['tableB']
