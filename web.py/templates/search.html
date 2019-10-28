@@ -35,6 +35,7 @@
     console.log("urlVars");
     console.log(urlVars);
     if (getCookie("lb_token") !== "") {
+      $('.enableOnInput').prop('disabled', false);
     }
     else if ("code" in urlVars) {
       var code = urlVars["code"];
@@ -45,6 +46,7 @@
           console.log("setting cokkie to access_token");
           console.log(access_token);
           setCookie("lb_token", access_token);
+          $('.enableOnInput').prop('disabled', false);
         }).fail(function(response) {
     alert('Error: ' + response.responseText);})
     } else { 
@@ -87,7 +89,7 @@
 	  <label for="outputFile">Path for the output file</label>
 	  <input type="text" class="form-control" id="outputFile" name="outputFile" />
 	</div>
-	<div><input type="submit" value="Generate Suspicious Pairs!" align = "center" class="btn btn-primary" /></div>
+	<div><input type="submit" value="Generate Suspicious Pairs!" align = "center"  name='submit' id='submitBtn' class='enableOnInput' disabled='disabled' /></div>
 </form>
 
 
