@@ -191,8 +191,9 @@ class fetchPair:
         post_params = web.input()
         cokies = web.cookies()
         self.auth_token = cokies.lb_token
-        self.auth_header = "Bearer " + self.auth_token
-        print ("token",self.auth_token)
+        authtoken = cokies.lb_token
+        self.auth_header = "Bearer " + authtoken
+        print ("token received: ",authtoken)
         table_a_url = post_params['tableA']
         table_b_url = post_params['tableB']
         label_data_url = post_params['labelledPairs']
