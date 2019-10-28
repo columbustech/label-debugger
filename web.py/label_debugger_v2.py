@@ -103,10 +103,10 @@ class fetchPair:
         self.cdriveApiUrl = "https://api.cdrive.columbusecosystem.com"
         self.token = '2sFbk5qhFblhaOiTdtZ7tPbvueSW5i'
         #self.auth_header = "Bearer " + self.token
-        self.features_vector_path = "users/bha92/fp/feature_vector.csv"
+        self.features_vector_path = "users/bha99/fp/feature_vector.csv"
         time_stamp = int(round(time.time() * 1000))
         self.output_file = 'suspicious_paris'+str(time_stamp)+'.csv'
-        self.out_path = "users/bha92/output"
+        self.out_path = "users/bha99/output"
         self.tableA = "tableA.csv"
         self.tableB = "tableB.csv"
         self.labelfile = "label.csv"
@@ -191,7 +191,7 @@ class fetchPair:
         post_params = web.input()
         cokies = web.cookies()
         self.auth_token = cokies.lb_token
-        authtoken = cokies.lb_token
+        authtoken = cokies.columbus_token
         self.auth_header = "Bearer " + authtoken
         print ("token received: ",authtoken)
         table_a_url = post_params['tableA']
