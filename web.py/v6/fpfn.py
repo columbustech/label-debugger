@@ -27,7 +27,7 @@ class FPFN(Detector):
     def detect_and_rank(self):
         self.get_inconsistency_indices()
         ranked = self.rank_inconsistency_indices()
-        print("Number of suspicious examples after ranking:", len(ranked))
+        #print("Number of suspicious examples after ranking:", len(ranked))
         self.num_iter += 1
         return [ t[0] for t in ranked ]
     

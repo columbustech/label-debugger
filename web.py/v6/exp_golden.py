@@ -64,10 +64,10 @@ def run():
     
     all_detected_errors = debug_labels(debugger, index2pair, pair2golden)
     
-    print("Total number of label errors: ", len(all_errors))
-    print("Number of iterations: ", debugger.iter_count)
-    print("Number of checked pairs: ", len(debugger.verified_indices))
-    print("Number of detected errors: ", len(all_detected_errors))
+    # print("Total number of label errors: ", len(all_errors))
+    # print("Number of iterations: ", debugger.iter_count)
+    # print("Number of checked pairs: ", len(debugger.verified_indices))
+    # print("Number of detected errors: ", len(all_detected_errors))
     
     apath = os.path.join(basedir, params['apath'])
     bpath = os.path.join(basedir, params['bpath'])
