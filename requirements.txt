@@ -3,7 +3,7 @@ web.py==0.40.dev0
 pandas
 requests
 cheroot
-numpy==1.16.2
+numpy==1.22.0
 scikit-learn
 pandas
 scipy
